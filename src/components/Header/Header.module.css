@@ -1,0 +1,35 @@
+.header {
+  background-color: #495d6e;
+  width: 100%;
+  height: 100px;
+}
+.header_context {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.button_header_1 {
+  background: #21232342;
+  border-radius: 8px;
+  height: 44px;
+  width: 132px;
+  color: white;
+  border: 0;
+  border: 1px solid #d2d3d342;
+}
+.button_header_2 {
+  border: 1px solid #21232342;
+  border-radius: 8px;
+  height: 44px;
+  width: 132px;
+  margin-left: 18px;
+}
+.header_context {
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+.rental {
+  font-size: 40px;
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
