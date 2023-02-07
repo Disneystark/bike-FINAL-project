@@ -1,0 +1,47 @@
+.box {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 3px 9px;
+  margin-top: 31px;
+}
+
+.input_container label {
+  font-size: 16px;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+.input_container input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  font-size: 15px;
+  color: #fff;
+}
+.input_container input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #efa097;
+}
+.btn {
+  color: rgba(156, 219, 247, 0.212);
+  background-color: #efa09749;
+  outline: none;
+  border: 0;
+  color: #fff;
+  padding: 6px 20px;
+  text-transform: uppercase;
+  margin-top: 6px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn:active {
+  color: #cef7f3;
+  background-color: #a5b1b142;
+}
+
+.input_container input:focus ~ label,
+.input_container input:valid ~ label {
+  top: -12px;
+  font-size: 12px;
+}

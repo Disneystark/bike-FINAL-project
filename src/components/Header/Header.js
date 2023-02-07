@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Header.module.css";
+import { FormSignUp } from "../FormSignUp/FormSignUp";
 
 const MENU_TYPE_SIGNUP = 0;
 const MENU_TYPE_SIGNIN = 1;
@@ -7,6 +8,12 @@ const MENU_TYPE_THEFTFORM = 2;
 
 const Header = () => {
   const [openMenuType, setOpenMenuType] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const [password, setPassword] = useState("");
+  var raw = JSON.stringify({
+    email: "user@skillfactory.ru",
+    password: "12345",
+  });
   const handleMenuOpen = (nextMenuType) => {
     if (nextMenuType === openMenuType) {
       setOpenMenuType(null);
@@ -74,41 +81,49 @@ const Header = () => {
             </div>
           )}
 
-          {openMenuType === MENU_TYPE_SIGNUP && (
-            <div className={styles.box}>
-              <form>
-                <div className={styles.input_container}>
-                  <label>Имя</label>
-                  <input type="text" />
-                </div>
-                <div className={styles.input_container}>
-                  <label>Фамилия</label>
-                  <input type="text" />
-                </div>
-                <div className={styles.input_container}>
-                  <label>Пароль</label>
-                  <input type="text" />
-                </div>
-                <div className={styles.input_container}>
-                  <label>E-mail</label>
-                  <input type="mail" />
-                </div>
-                <button className={styles.btn}>Регистрация</button>
-              </form>
-            </div>
-          )}
+          {openMenuType === MENU_TYPE_SIGNUP && <FormSignUp />}
           {openMenuType === MENU_TYPE_SIGNIN && (
             <div className={styles.box}>
               <form>
                 <div className={styles.input_container}>
                   <label>Email</label>
-                  <input type="mail" />
+                  <input
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    type="Email"
+                  />
                 </div>
                 <div className={styles.input_container}>
                   <label>Пароль</label>
-                  <input type="text" />
+                  <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
+                    type="password"
+                  />
                 </div>
-                <button className={styles.btn}>Войти</button>
+                <button
+                  onClick={() => {
+                    console.log(inputValue);
+
+                    var requestOptions = {
+                      method: "POST",
+                      body: raw,
+                      redirect: "follow",
+                    };
+
+                    fetch(
+                      "https://sf-final-project-be.herokuapp.com/api/auth/sign_up",
+                      requestOptions
+                    )
+                      .then((response) => response.text())
+                      .then((result) => console.log(result))
+                      .catch((error) => console.log("error", error));
+                  }}
+                  className={styles.btn}
+                >
+                  Войти
+                </button>
               </form>
             </div>
           )}
