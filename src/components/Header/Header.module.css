@@ -109,5 +109,5 @@
 .input_container input:focus ~ label,
 .input_container input:valid ~ label {
   top: -12px;
-  font-size: 12px;
+  font-size: 13px;
 }

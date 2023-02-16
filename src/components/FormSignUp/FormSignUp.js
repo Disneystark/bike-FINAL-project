@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./FormSignUp.module.css";
-
+import axios from "axios";
 const ERROR_STATUS = "ERR";
 
 export const FormSignUp = () => {
@@ -9,6 +9,7 @@ export const FormSignUp = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [error, setError] = useState(null);
+
   const handleSignUp = () => {
     const body = {
       email,
@@ -18,11 +19,12 @@ export const FormSignUp = () => {
       clientId: "27afcae6-a218-11ed-a8fc-0242ac120002",
     };
 
-    fetch("https://sf-final-project-be.herokuapp.com/api/auth/sign_up", {
-      method: "POST",
-      body: JSON.stringify(body),
-      redirect: "follow",
-    })
+    axios
+      .post("https://sf-final-project-be.herokuapp.com/api/auth/sign_up", {
+        method: "POST",
+        body: JSON.stringify(body),
+        redirect: "follow",
+      })
       .then((response) => response.json())
       .then((result) => {
         if (result.status === ERROR_STATUS) {
@@ -30,8 +32,8 @@ export const FormSignUp = () => {
         } else {
         }
         console.log(result);
-      });
-    //   .catch((error) => console.log("error", error));
+      })
+      .catch((error) => console.log("error", error));
   };
 
   return (
