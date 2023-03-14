@@ -10,22 +10,25 @@ export const FormSignUp = () => {
   const [lastName, setLastName] = useState("");
   const [error, setError] = useState(null);
 
+  const [clientId, setClientId] = useState(
+    "1d32a9f0-5413-4859-8ffa-511658c36b78"
+  );
+
   const handleSignUp = () => {
     const body = {
       email,
       password,
       firstName,
       lastName,
-      clientId: "27afcae6-a218-11ed-a8fc-0242ac120002",
+      clientId,
     };
 
     axios
       .post("https://sf-final-project-be.herokuapp.com/api/auth/sign_up", {
-        method: "POST",
         body: JSON.stringify(body),
         redirect: "follow",
       })
-      .then((response) => response.json())
+
       .then((result) => {
         if (result.status === ERROR_STATUS) {
           setError(result.message);
@@ -46,6 +49,7 @@ export const FormSignUp = () => {
           type="text"
         />
       </div>
+
       <div className={styles.input_container}>
         <label>Фамилия</label>
         <input
@@ -59,6 +63,14 @@ export const FormSignUp = () => {
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          type="text"
+        />
+      </div>
+      <div className={styles.input_container}>
+        <label>clientId</label>
+        <input
+          value={clientId}
+          onChange={(e) => setClientId(e.target.value)}
           type="text"
         />
       </div>

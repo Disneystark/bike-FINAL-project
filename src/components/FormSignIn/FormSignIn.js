@@ -5,6 +5,7 @@ import styles from "./FormSignIn.module.css";
 export const FormSignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleSignIn = () => {
     const bodySignIn = {
       email,
@@ -13,11 +14,10 @@ export const FormSignIn = () => {
 
     axios
       .post("https://sf-final-project-be.herokuapp.com/api/auth/sign_in", {
-        method: "POST",
         body: JSON.stringify(bodySignIn),
         redirect: "follow",
       })
-      .then((response) => response.json())
+
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   };
