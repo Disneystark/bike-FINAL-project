@@ -18,10 +18,7 @@ export const FormTheft = () => {
     };
 
     axios
-      .post("https://sf-final-project-be.herokuapp.com/api/cases/", {
-        body: JSON.stringify(bodyTheft),
-        redirect: "follow",
-      })
+      .post("https://sf-final-project-be.herokuapp.com/api/cases/", bodyTheft)
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   };
